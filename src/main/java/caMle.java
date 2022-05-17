@@ -1,4 +1,5 @@
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.*;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.*;
@@ -37,17 +38,18 @@ public class caMle {
         Sheet sheet = book.createSheet("data");
 
         poop ps = new poop();
-        String[] temp = ps.getArray();
+        String[] shit = ps.getArray();
+        ArrayList<String> firstRow = ps.getFirst();
+        ArrayList<String> secondRow = ps.getSecond();
 
 
-        for(int i=1;i< temp.length;i+=2)
+        for(int i=0;i< firstRow.size();i++)
         {
-            Row row = sheet.createRow(i/2);
-
+            Row row = sheet.createRow(i);
             Cell first = row.createCell(0);
-            first.setCellValue(temp[i]);
+            first.setCellValue(firstRow.get(i));
             Cell second = row.createCell(1);
-            second.setCellValue( temp[i+1]);
+            second.setCellValue( secondRow.get(i));
         }
         book.write(new FileOutputStream(file));
         System.out.println("Write is successfull");
