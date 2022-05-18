@@ -54,14 +54,34 @@ public class poop {
             }
         }
         for (int i = 0; i < secondColumn.size(); i++) {
-            if (firstColumn.get(i).trim().startsWith("In what book and chapter".trim())){
+
+            if ((firstColumn.get(i).trim().startsWith("In what book and"))){
                 firstColumn.remove(i);
                 secondColumn.remove(i);
             }
+            if ((firstColumn.get(i).length()>120)) {
+                firstColumn.remove(i);
+                secondColumn.remove(i);
+            }
+
             for (int j = 0; j < 40; j++) {
-            secondColumn.set(i, secondColumn.get(i).replace(("(R14:"+j+")"),""));
+            secondColumn.set(i, secondColumn.get(i).replace(("(R15:"+j+")"),""));
+            }
+
+                    }
+        for (int i = 0; i < secondColumn.size(); i++) {
+            if (i < (secondColumn.size()-1)) {
+
+                if (firstColumn.get(i).trim().toLowerCase().contains(secondColumn.get(i + 1).trim().toLowerCase())) {
+                    if (firstColumn.get(i + 1).trim().toLowerCase().contains(secondColumn.get(i).trim().toLowerCase())) {
+                        System.out.println(1);
+                        firstColumn.remove(i+1);
+                        secondColumn.remove(i+1);
+        }
+                }
             }
         }
+
 
         return arrOfStr;
 
